@@ -1,0 +1,20 @@
+2000-01-25  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
+
+	* unregister_blade_run_callback() for releasing the entry for a given
+	blade_envPtr.
+
+	* Added RPM-related targets to Makefile.PL. What a mess.
+
+	* Bug fixes in util.c.
+
+	* Minor cosmetic fixes. blade_disp() works now. Package renamed
+	to pBLADE. Example theme.cgi renamed to obj_define.cgi.
+
+	* Added blade_theme_simple_init(). The module is now complete, and
+	only requires testing.
+
+	* Additional documentation. Minor changes in Makefile.PL. Minor
+	changes to example scripts. Minor changes to LICENSE.
+
+	* First revision, missing blade_theme_simple_init(), needs testing.
+

@@ -1,0 +1,35 @@
+TYPEMAP
+blade_env  *      T_PTROBJ
+blade_hash *      T_PTROBJ
+CORBA_char *      T_CORBASTRING
+CORBA_char_nodup * T_STRING
+CORBA_short       T_IV
+char       *      T_STRING
+
+INPUT
+T_STRING
+	{
+		if ($arg == &sv_undef)
+			$var = ($type)NULL;
+		else
+			$var = ($type)SvPV($arg,na);
+	}
+
+T_CORBASTRING
+	{
+		if ($arg == &sv_undef)
+			$var = ($type)NULL;
+		else
+			$var = ($type)SvPV($arg,na);
+	}
+
+OUTPUT
+T_STRING
+	if ($var != NULL)
+		sv_setpv((SV *)$arg, $var);
+
+T_CORBASTRING
+	if ($var != NULL) {
+		sv_setpv((SV *)$arg, $var);
+		CORBA_free($var);
+	}
