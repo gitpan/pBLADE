@@ -118,7 +118,7 @@ void blade_run_wrapper(blade_env *blade) {
     croak("blade_run_wrapper() - this did not happen");
 
   tmp_sv = sv_newmortal();
-  sv_setref_pv(tmp_sv,"blade_envPtr",blade);
+  sv_setref_pv(tmp_sv,"BLADEENV",blade);
   XPUSHs(tmp_sv);
   PUTBACK;
 

@@ -8,7 +8,7 @@ require Exporter;
 require DynaLoader;
 require AutoLoader;
 
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 @ISA = qw(Exporter DynaLoader);
 @EXPORT = qw(
@@ -146,17 +146,53 @@ a C<CORBA_char*> in C, will instead return a normal Perl string
 in pBLADE.
 
 The C datatype C<blade_env*> is represented as a Perl object
-blessed into the C<blade_envPtr> class. One obtains a C<blade_envPtr> object
+blessed into the C<BLADEENV> class. One obtains a C<BLADEENV> object
 by calling C<blade_page_init()>, which is then suitable for
 passing to any other functions that would require a C<blade_env*>
 in the C library.
 Such functions may also be used in an object-oriented manner, with the
 leading 'blade_' stripped off. For example, if C<$blade> is an object
-of type C<blade_envPtr>, then the following two lines are equivalent:
+of type C<BLADEENV>, then the following two lines are equivalent:
 
 	blade_hr( $blade );   # traditional function name
 
 	$blade->hr;           # pBLADE's additional OO interface
+
+=head2 blade_env* fields
+
+The C C<blade_env> struct datatype has several data which application programmers
+might find useful. These data are made available to C<BLADEENV> objects
+via various methods. The methods are listed below.
+
+=over 4
+
+=item links( )
+
+=item colors( )
+
+=item tags( )
+
+=item web_vars( )
+
+=item web_root( )
+
+=item header( )
+
+=item sysconfdir( )
+
+=item bladeconfdir( )
+
+=item web_page_name( )
+
+=item page_name( )
+
+=item web_context( )
+
+=item user( )
+
+=item passwd( )
+
+=back
 
 =head2 Functions requiring (int *argc, char **argv)
 
@@ -170,7 +206,7 @@ to the Perl script. Note that C<@ARGV> may come back modified if libblade
 found any of the arguments to its liking. An example:
 
 	# 
-	# Initialize BLADE, get returned blade_envPtr object.
+	# Initialize BLADE, get returned BLADEENV object.
 	# libblade may modify @ARGV in this case.
 	#
 	my $blade = blade_page_init(\@ARGV, '', 'en');
@@ -178,11 +214,8 @@ found any of the arguments to its liking. An example:
 =head2 BLADE hashes
 
 The C datatype C<blade_hash*> is represented in pBLADE as a Perl object
-blessed into the C<blade_hashPtr> class. One obtains such an object from
+blessed into the C<BLADEHASH> class. One obtains such an object from
 C<blade_hash_new()>, C<blade_hash_dup()> and C<blade_web_vars_get_all()>.
-
-The destructor for the C<blade_hashPtr> class automatically calls
-C<blade_hash_free()> when the object goes out of context.
 
 =head2 Callbacks
 

@@ -1,3 +1,18 @@
+2000-02-04  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
+
+	* $VERSION = '0.08';
+
+	* Classes renamed BLADEENV and BLADEHASH.
+
+	* blade_hashPtr::DESTROY() removed.
+
+	* Added BLADEENV methods links(), colors(), tags(), web_vars(),
+	web_root(), header(), sysconfdir(), bladeconfdir(), web_page_name(),
+	page_name(), web_context(), user(), passwd(). All of these are for
+	obtaining the data inside a blade_env*.
+
+	* Documentation updates.
+
 2000-02-03  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
 
 	* $VERSION = '0.07';

@@ -58,7 +58,7 @@ void blade_theme_simple_init_start_wrapper(blade_env *blade, CORBA_char *blar_ti
   PUSHMARK(sp);
 
   blade_sv = sv_newmortal();
-  sv_setref_pv(blade_sv,"blade_envPtr",blade);
+  sv_setref_pv(blade_sv,"BLADEENV",blade);
 
   blar_title_sv = sv_newmortal();
   if (blar_title != NULL)

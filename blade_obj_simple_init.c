@@ -39,7 +39,7 @@ void blade_obj_simple_init_wrapper(blade_env *blade, CORBA_char *name, CORBA_cha
   PUSHMARK(sp);
 
   blade_sv = sv_newmortal();
-  sv_setref_pv(blade_sv,"blade_envPtr",blade);
+  sv_setref_pv(blade_sv,"BLADEENV",blade);
 
   name_sv = sv_newmortal();
   if (name != NULL)
