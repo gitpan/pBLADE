@@ -8,7 +8,7 @@ require Exporter;
 require DynaLoader;
 require AutoLoader;
 
-$VERSION = '0.06';
+$VERSION = '0.07';
 
 @ISA = qw(Exporter DynaLoader);
 @EXPORT = qw(
@@ -82,6 +82,7 @@ $VERSION = '0.06';
 	     blade_obj
 	     blade_link_file
 	     blade_url_decode
+	     blade_url_encode
 	     blade_session_set_var
 	     blade_session_get_var
 	     blade_session_get_set
@@ -157,12 +158,12 @@ of type C<blade_envPtr>, then the following two lines are equivalent:
 
 	$blade->hr;           # pBLADE's additional OO interface
 
-=head2 Functions requiring C<(int *argc, char **argv)>
+=head2 Functions requiring (int *argc, char **argv)
 
 C<blade_page_init()>, C<blade_obj_simple_init()> and C<blade_theme_simple_init()>
 in libblade expect to be given the command-line
 argument count and values,
-in the event the any of them are of use to libblade.
+in the event that any of them are of use to libblade.
 In pBLADE, however, these arguments are replaced with a single array
 reference, usually C<\@ARGV>, representing the command line arguments given
 to the Perl script. Note that C<@ARGV> may come back modified if libblade
@@ -207,7 +208,7 @@ An example:
 
 =head1 AUTHOR
 
-Pete Ratzlaff <pratzlaff\@cfa.harvard.edu>
+Pete Ratzlaff <pratzlaff@cfa.harvard.edu>
 
 =head1 SEE ALSO
 

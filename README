@@ -12,8 +12,8 @@ Where can (did) I get it?
 
 What version of BLADE does this module need?
 ----------------------------------------------
-  This version of pBLADE has been tested with libblade 0.22.0. It is
-  not known whether other version will work.
+  This version of pBLADE has been built with libblade 0.24. It is not known
+  whether other version will work.
 
 Installation
 ------------
@@ -24,8 +24,8 @@ Installation
      $ make test
      $ make install
 
-Please feel free to contact me know if you think you've found a bug, or if
-you have a patch, or for any other reason. Bugs cannot be fixed if you don't
+Please feel free to contact me if you think you've found a bug, or if you
+have a patch, or for any other reason. Bugs cannot be fixed if you don't
 report them!
 
 -Pete Ratzlaff <pratzlaff@cfa.harvard.edu>

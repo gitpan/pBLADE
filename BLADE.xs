@@ -665,6 +665,10 @@ void
 blade_url_decode(string)
 	CORBA_char * string
 
+CORBA_char *
+blade_url_encode(string)
+	CORBA_char * string
+
 void
 blade_session_set_var(blade, name, value, temp)
 	blade_env * blade
