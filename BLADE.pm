@@ -8,7 +8,7 @@ require Exporter;
 require DynaLoader;
 require AutoLoader;
 
-$VERSION = '0.09';
+$VERSION = '0.10';
 
 @ISA = qw(Exporter DynaLoader);
 @EXPORT = qw(
@@ -37,6 +37,7 @@ $VERSION = '0.09';
 	     blade_small
 	     blade_sub
 	     blade_sup
+	     blade_titlebox
 	     blade_tt
 	     blade_table
 	     blade_tr
@@ -64,6 +65,8 @@ $VERSION = '0.09';
 	     blade_hash_get_num_nodup
 	     blade_hash_get_num_name
 	     blade_hash_get_num_name_nodup
+	     blade_hash_load_file
+	     blade_hash_load_string
 	     blade_hash_set
 	     blade_hash_set_nodel
 	     blade_hash_exists_in

@@ -245,6 +245,14 @@ blade_sup(blade, start)
 		BLADEENV::sup = 2
 
 void
+blade_titlebox(blade, mode)
+	BLADEENV blade
+	int mode
+	ALIAS:
+		BLADE::blade_titlebox = 1
+		BLADEENV::titlebox = 2
+
+void
 blade_tt(blade, start)
 	BLADEENV blade
 	int start
@@ -404,7 +412,7 @@ blade_disp(blade, string)
 		BLADE::blade_disp = 1
 		BLADEENV::disp = 2
 
-CORBA_char *
+CORBA_char_nodup *
 blade_color(blade, name, def)
 	BLADEENV blade
 	CORBA_char * name
@@ -478,6 +486,24 @@ blade_hash_get_num_name_nodup(hash, number)
 	ALIAS:
 		BLADE::blade_hash_get_num_name_nodup = 1
 		BLADEHASH::get_num_name_nodup = 2
+
+void
+blade_hash_load_file(hash, name, overwrite)
+	BLADEHASH hash
+	CORBA_char * name
+	int overwrite
+	ALIAS:
+		BLADE::blade_hash_load_file = 1
+		BLADEHASH::load_file = 2
+
+void
+blade_hash_load_string(hash, string, overwrite)
+	BLADEHASH hash
+	CORBA_char * string
+	int overwrite
+	ALIAS:
+		BLADE::blade_hash_load_string = 1
+		BLADEHASH::load_string = 2
 
 void
 blade_hash_set(hash, name, value)

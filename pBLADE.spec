@@ -3,11 +3,11 @@
 
 Summary:   Write BLADE applications in Perl
 Name:      pBLADE
-Version:   0.09
+Version:   0.10
 Release:   %rel
 License:   GPL or Artistic License
 Group:     Development/Libraries
-Source:    pBLADE-0.09.tar.gz
+Source:    pBLADE-0.10.tar.gz
 URL:       http://www.thestuff.net/bob/projects/blade
 BuildRoot: /tmp/pBLADE-%{PACKAGE_VERSION}-root
 Packager:  Pete Ratzlaff <pratzlaff@cfa.harvard.edu>

@@ -46,7 +46,8 @@ move_to_argv(SV *args_ref, int *argc, char ***argv) {
   if (!(*argv = calloc(*argc, sizeof(char**))))
     croak("move_to_argv() - out of memory, calloc()");
 
-  (*argv)[0] = "perl";
+  /*  (*argv)[0] = "perl"; */
+  (*argv)[0] = SvPV(perl_get_sv("main::0", FALSE),PL_na);
 
   for (i=1; i<*argc; i++) {
     SV **tmp = av_fetch(args, i-1, 0);

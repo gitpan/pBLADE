@@ -1,3 +1,16 @@
+2000-05-21  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
+
+	* $VERSION = '0.10';
+
+	* examples/basic.cgi now uses blade_page().
+
+	* move_to_argv() now uses $0 in argv[0] instead of "perl".
+
+	* Fixed bug in blade_color() return value.
+
+	* Added blade_hash_load_file(), blade_hash_load_string(),
+	blade_titlebox().
+
 2000-03-14  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
 
 	* $VERSION = '0.09';
