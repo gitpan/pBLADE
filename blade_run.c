@@ -11,6 +11,7 @@
 
 typedef struct {
   SV *code;
+  SV *data;
   blade_env *blade;
 } CallbackStruct;
 
@@ -57,13 +58,15 @@ void unregister_blade_run_callback(blade_env *blade) {
 
   if (index != -1) {
     SvREFCNT_dec(structs[index].code);
+    SvREFCNT_dec(structs[index].data);
     structs[index].code = NULL;
+    structs[index].data = NULL;
     structs[index].blade = NULL;
     n_structs_used--;
   }
 }
 
-void register_blade_run_callback(blade_env *blade, SV* code) {
+void register_blade_run_callback(blade_env *blade, SV* code, SV* data) {
 
   long i;
   long index = find_callback(blade);
@@ -72,6 +75,8 @@ void register_blade_run_callback(blade_env *blade, SV* code) {
   if (index != -1) {
     SvREFCNT_dec(structs[index].code);
     structs[index].code = code;
+    SvREFCNT_dec(structs[index].data);
+    structs[index].data = data;
   }
   else {
 
@@ -94,18 +99,20 @@ void register_blade_run_callback(blade_env *blade, SV* code) {
     }
 
     structs[index].code = code;
+    structs[index].data = data;
     structs[index].blade = blade;
 
     n_structs_used++;
   }
 
   SvREFCNT_inc(code);
+  SvREFCNT_inc(data);
 }
 
-void blade_run_wrapper(blade_env *blade) {
+void blade_run_wrapper(blade_env *blade, void *data) {
 
   long index;
-  SV *tmp_sv;
+  SV *blade_sv;
 
   dSP;
   ENTER;
@@ -117,9 +124,11 @@ void blade_run_wrapper(blade_env *blade) {
   if (index == -1)
     croak("blade_run_wrapper() - this did not happen");
 
-  tmp_sv = sv_newmortal();
-  sv_setref_pv(tmp_sv,"BLADEENV",blade);
-  XPUSHs(tmp_sv);
+  blade_sv = sv_newmortal();
+  sv_setref_pv(blade_sv,"BLADEENV",blade);
+
+  XPUSHs(blade_sv);
+  XPUSHs(structs[index].data);
   PUTBACK;
 
   perl_call_sv(structs[index].code, G_DISCARD);

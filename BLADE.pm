@@ -8,7 +8,7 @@ require Exporter;
 require DynaLoader;
 require AutoLoader;
 
-$VERSION = '0.08';
+$VERSION = '0.09';
 
 @ISA = qw(Exporter DynaLoader);
 @EXPORT = qw(
@@ -91,6 +91,8 @@ $VERSION = '0.08';
 	     blade_run
 	     blade_obj_simple_init
 	     blade_theme_simple_init
+	     blade_accept
+	     blade_page
 	     );
 
 sub AUTOLOAD {
@@ -196,7 +198,8 @@ via various methods. The methods are listed below.
 
 =head2 Functions requiring (int *argc, char **argv)
 
-C<blade_page_init()>, C<blade_obj_simple_init()> and C<blade_theme_simple_init()>
+C<blade_page()>, C<blade_page_init()>, C<blade_obj_simple_init()>
+and C<blade_theme_simple_init()>
 in libblade expect to be given the command-line
 argument count and values,
 in the event that any of them are of use to libblade.
@@ -219,14 +222,14 @@ C<blade_hash_new()>, C<blade_hash_dup()> and C<blade_web_vars_get_all()>.
 
 =head2 Callbacks
 
-C<blade_run()>, C<blade_obj_simple_init()> and C<blade_theme_simple_init()>
+C<blade_page()>, C<blade_run()>, C<blade_obj_simple_init()>
+and C<blade_theme_simple_init()>
 each require callbacks to be specified. In C, these are the addresses
 of functions of certain types. In pBLADE, these are Perl code references.
 
 The Perl subroutine referenced, when called, will be given arguments just
-as one would expect from the C function prototypes. Also, in the case
-of C<blade_obj_simple_init()> and C<blade_theme_simple_init()>, another
-argument, C<$data> is given which is a Perl scalar that will be passed
+as one would expect from the C function prototypes. Also in these functions,
+another argument, C<$data>, is given which is a Perl scalar that will be passed
 to the callback function. Use undef if you don't wish to use this feature.
 
 An example:

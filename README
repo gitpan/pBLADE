@@ -12,8 +12,8 @@ Where can (did) I get it?
 
 What version of BLADE does this module need?
 ----------------------------------------------
-  This version of pBLADE has been built with libblade 0.24. It is not known
-  whether other version will work.
+  This version of pBLADE has been built with libblade-0.30. It is not known
+  whether other versions will work.
 
 Installation
 ------------

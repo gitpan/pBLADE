@@ -4,6 +4,7 @@
 
 #include <blade.h>
 #include "util.h"
+#include "blade_page.h"
 #include "blade_run.h"
 #include "blade_obj_simple_init.h"
 #include "blade_theme_simple_init.h"
@@ -279,9 +280,11 @@ blade_td(blade, start, args)
 		BLADEENV::td = 2
 
 void
-blade_form(blade, start, args)
+blade_form(blade, start, method, action, args)
 	BLADEENV blade
 	int start
+	CORBA_char * method
+	CORBA_char * action
 	CORBA_char * args
 	ALIAS:
 		BLADE::blade_form = 1
@@ -686,7 +689,7 @@ blade_page_init(args_ref, context, lang)
 
 
 int
-blade_run(blade, code, bar_title, page_title, head, right_name, accept_unlisted)
+blade_run(blade, code, bar_title, page_title, head, right_name, accept_unlisted, data)
 	BLADEENV blade
 	SV * code
 	char * bar_title
@@ -694,13 +697,14 @@ blade_run(blade, code, bar_title, page_title, head, right_name, accept_unlisted)
 	char * head
 	char * right_name
 	int accept_unlisted
+	SV * data
 	ALIAS:
 		BLADE::blade_run = 1
 		BLADEENV::run = 2
 	CODE:
 	if (SvROK(code) && SvTYPE(SvRV(code)) == SVt_PVCV) {
-		register_blade_run_callback(blade, SvRV(code));
-		RETVAL = blade_run(blade,blade_run_wrapper,bar_title,page_title,head,right_name,accept_unlisted);
+		register_blade_run_callback(blade, SvRV(code), data);
+		RETVAL = blade_run(blade,blade_run_wrapper,bar_title,page_title,head,right_name,accept_unlisted, NULL);
 
 	}
 	else
@@ -766,6 +770,50 @@ blade_theme_simple_init(args_ref, start_code, end_code, init_code, data)
 		croak("blade_theme_simple_init() - second, third and fourth arguments must be code references");
 	OUTPUT:
 		RETVAL
+
+void
+blade_page(args_ref, body_code, init_code, halt_code, bar_title, page_title, head, right_name, accept_unlisted, context, lang, data)
+	SV * args_ref
+	SV * body_code
+	SV * init_code
+	SV * halt_code
+	char * bar_title
+	char * page_title
+	char * head
+	char * right_name
+	int accept_unlisted
+	char * context
+	char * lang
+	SV * data
+	PREINIT:
+		int argc;
+		char **argv;
+	CODE:
+
+	if ( SvROK(body_code) && SvTYPE(SvRV(body_code)) == SVt_PVCV &&
+	     SvROK(init_code) && SvTYPE(SvRV(init_code)) == SVt_PVCV &&
+	     SvROK(halt_code) && SvTYPE(SvRV(halt_code)) == SVt_PVCV) {
+		if (args_ref != &PL_sv_undef && (!SvROK(args_ref) || SvTYPE(SvRV(args_ref)) != SVt_PVAV))
+			croak("blade_page() - first argument must be undef or array ref");
+
+		move_to_argv(args_ref, &argc, &argv);
+		register_blade_page_callbacks(SvRV(body_code), SvRV(init_code), SvRV(halt_code), data);
+		blade_page(&argc,argv,
+		   blade_page_body_wrapper,
+		   blade_page_init_wrapper,
+		   blade_page_halt_wrapper,
+		   bar_title, page_title, head, right_name, accept_unlisted, context, lang,
+		   NULL
+		);
+		move_to_array(args_ref, argc, argv);
+
+	}
+	else
+		croak("blade_page() - second, third and fourth arguments must be code references");
+
+int
+blade_accept()
+
 
 MODULE = BLADE  	PACKAGE = BLADEENV
 

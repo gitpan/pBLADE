@@ -1,3 +1,12 @@
+2000-03-14  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
+
+	* $VERSION = '0.09';
+
+	* Minor documentation updates.
+
+	* Changes to mirror libblade-0.30 - blade_page(), blade_accept() added,
+	API changes in blade_form(), blade_run().
+
 2000-02-04  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
 
 	* $VERSION = '0.08';

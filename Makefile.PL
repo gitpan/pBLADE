@@ -12,6 +12,7 @@ my $distname = 'pBLADE';
 my @objects = qw(
 		 BLADE.o
 		 blade_obj_simple_init.o
+		 blade_page.o
 		 blade_run.o
 		 blade_theme_simple_init.o
 		 util.o
