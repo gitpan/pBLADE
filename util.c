@@ -25,7 +25,7 @@ move_to_array(SV *args_ref, int argc, char **argv) {
 void
 move_to_argv(SV *args_ref, int *argc, char ***argv) {
 
-  AV *args;
+  AV *args = NULL;
   int i;
 
   /*

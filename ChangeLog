@@ -1,3 +1,15 @@
+2000-01-28  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
+
+	* $VERSION = '0.06';
+
+	* RPM target fixes. Output of pod2text, pod2html in BLADE docs
+	directory. Added docs to uninstall.
+
+2000-01-27  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
+
+	* Fixed some compiler warnings. Versions are ad-hoc for now, until
+	some real testing is done.
+
 2000-01-25  Pete Ratzlaff  <pratzlaff@cfa.harvard.edu>
 
 	* unregister_blade_run_callback() for releasing the entry for a given

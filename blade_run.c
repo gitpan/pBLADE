@@ -21,8 +21,6 @@ static long n_structs_used = 0;
 
 static void allocate_more_structs() {
 
-  CallbackStruct *tmp;
-
   structs = realloc(structs,
 		(n_structs + STRUCTS_ALLOCATE_AT_A_TIME) *
 		sizeof(CallbackStruct)

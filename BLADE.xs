@@ -3,7 +3,7 @@
 #include "XSUB.h"
 
 #include <blade.h>
-#include "blade.h"
+#include "util.h"
 #include "blade_run.h"
 #include "blade_obj_simple_init.h"
 #include "blade_theme_simple_init.h"
@@ -749,7 +749,7 @@ blade_obj_simple_init(args_ref, code, data)
 	SV * code
 	SV * data
 	PREINIT:
-		int argc, i;
+		int argc;
 		char **argv;
 	CODE:
 
@@ -776,7 +776,7 @@ blade_theme_simple_init(args_ref, start_code, end_code, init_code, data)
 	SV * init_code
 	SV * data
 	PREINIT:
-		int argc, i;
+		int argc;
 		char **argv;
 	CODE:
 
